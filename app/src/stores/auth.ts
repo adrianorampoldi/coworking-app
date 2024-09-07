@@ -35,6 +35,7 @@ export const useAuthStore = defineStore("auth-store", {
   getters: {
     isAuthenticated(state) {
       // ritorniamo true nel caso in cui il token sia valido
+      return !!state.token;
     },
   },
 });

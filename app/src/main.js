@@ -5,6 +5,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { createApp } from "vue";
 import App from "./App.vue";
+import { createPinia } from "pinia";
+import  router  from "./router";
 
 // Esercizi:
 // 1) Configurare app vue:
@@ -39,4 +41,9 @@ import App from "./App.vue";
 //  7.4) Sistemare rooms store per usare be
 
 const app = createApp(App);
+app.use(createPinia());
+app.use(router);
 app.mount("#app");
+
+
+

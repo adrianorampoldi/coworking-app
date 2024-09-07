@@ -5,6 +5,7 @@ import BottomMenu from "../components/menu/BottomMenu.vue";
 <template>
   <div class="px-5 h-full">
     <!-- Inserire componente per poter vedere dinamicamente le pagine -->
+     <RouterView />
     <BottomMenu />
   </div>
 </template>

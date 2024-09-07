@@ -1,9 +1,11 @@
 <script setup>
 import { ref } from "vue";
 // importare RegisterForm e LoginForm
+import RegisterForm from "../components/login/RegisterForm.vue";
+import LoginForm from "../components/login/LoginForm.vue";
 import LoginSwitcher from "../components/login/LoginSwitcher.vue";
 // fai diventare isRegistering una variabile reattiva
-const isRegistering = false;
+const isRegistering = ref(false);
 </script>
 
 <template>
@@ -22,6 +24,8 @@ const isRegistering = false;
     >
       <!-- Visualizzare LoginForm in caso isRegistering = false -->
       <!-- Altrimenti visualizzare RegisterForm-->
+      <LoginForm v-if="!isRegistering" />
+      <RegisterForm v-else />
       <LoginSwitcher
         :is-registering="isRegistering"
         @on-switch="() => (isRegistering = !isRegistering)"

@@ -2,8 +2,11 @@
 import PasswordField from "../inputs/PasswordField.vue";
 import TextField from "../inputs/TextField.vue";
 import { ref } from "vue";
-// importare authStore
+import { useAuthStore } from "../../stores/auth"; 
+import { useRouter } from "vue-router";
 // importare router
+const authStore = useAuthStore();
+const router = useRouter();
 const loginMap = ref(new Map());
 function updateForm(key, value) {
   loginMap.value.set(key, value);
@@ -11,6 +14,10 @@ function updateForm(key, value) {
 async function login() {
   // chiamare metodo di login con come valore loginMap trasformata in oggetto
   // in caso di risposta affermativa fare redirect su home
+  const response = await authStore.login(Object.fromEntries(loginMap.value.entries()));
+  if (response) {
+    router.push({ name: "home" });
+  } 
 }
 </script>
 <template>
@@ -29,11 +36,12 @@ async function login() {
       <TextField
         text="Username"
         placeholder="Inserisci il tuo username"
+        @on-changed-value="(value) => updateForm('username', value)"
       ></TextField>
       <PasswordField
         text="Password"
         placeholder="Inserisci una password"
-        @on-changed-value="(value) => updateForm('password', value)"
+  
       ></PasswordField>
       <div
         @click="() => login()"
