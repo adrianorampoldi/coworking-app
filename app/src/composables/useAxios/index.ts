@@ -25,7 +25,7 @@ export function useAxios() {
     config: AxiosRequestConfig, 
     defaultValue = null as null | any
   ) => {  
-    defaultValue ? defaultValue : instance.request(config);
+    return defaultValue ? defaultValue : instance.request(config);
   };
   return { sendRequest };
 }

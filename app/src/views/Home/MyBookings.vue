@@ -1,11 +1,18 @@
 <script setup lang="ts">
 // sistemare import di Content e HeaderVue
+import { onMounted } from "vue";
+import Content from "../../components/ui/Content.vue";
+import HeaderVue from "../../components/ui/HeaderVue.vue";
 import { useDayjs } from "../../composables";
 import { useBookingsStore } from "../../stores/bookings";
 const bookingsStore = useBookingsStore();
 // caricare le prenotazioni quando carico questa pagina per la prima volta
 const { dayJs } = useDayjs();
+onMounted(() => {
+  bookingsStore.getBookings();
+}); 
 </script>
+
 <template>
   <div class="w-full h-full pb-20 flex flex-col">
     <HeaderVue>
