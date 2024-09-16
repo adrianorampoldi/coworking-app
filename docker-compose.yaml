@@ -9,7 +9,7 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "54322:5432"
   coworking-server:
     build: ./server/.
     depends_on:
